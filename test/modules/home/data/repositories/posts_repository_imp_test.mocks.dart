@@ -14,6 +14,7 @@ import 'package:posts_challenge/modules/home/data/models/user_model.dart'
     as _i2;
 import 'package:posts_challenge/shared/datasources/users/users_datasource.dart'
     as _i6;
+import 'package:posts_challenge/shared/platform/network_info.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -78,4 +79,16 @@ class MockUsersDatasource extends _i1.Mock implements _i6.UsersDatasource {
           ),
         )),
       ) as _i4.Future<_i2.UserModel>);
+}
+
+/// A class which mocks [NetworkInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
+  @override
+  _i4.Future<bool> get isConnected => (super.noSuchMethod(
+        Invocation.getter(#isConnected),
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 }

@@ -14,3 +14,8 @@ abstract class Failure {
     }
   }
 }
+
+class NoInternetConnectionFailure extends Failure {
+  NoInternetConnectionFailure()
+      : super(errorMessage: 'No internet connection. Please connect to the internet.');
+}
