@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:feather_icons/feather_icons.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:posts_challenge/modules/home/domain/entities/post.dart';
+import 'package:posts_challenge/modules/comments/domain/entities/comment.dart';
 
-class PostCard extends StatelessWidget {
-  final Post post;
+class CommentCard extends StatelessWidget {
+  final Comment comment;
   final Function()? onTap;
   final bool? isPost;
-  const PostCard(
-      {super.key, required this.post, this.onTap, this.isPost = true});
+  const CommentCard(
+      {super.key, required this.comment, this.onTap, this.isPost = true});
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +29,9 @@ class PostCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.secondary,
                           shape: BoxShape.circle),
                       child: Icon(
-                        FeatherIcons.alignJustify,
+                        FeatherIcons.messageSquare,
                         color: Theme.of(context).colorScheme.surface,
                       ),
-                    ),
-                    AutoSizeText(
-                      post.user?.userName ?? '-',
-                      maxLines: 1,
-                      minFontSize: 8,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
@@ -51,12 +41,13 @@ class PostCard extends StatelessWidget {
               ),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          post.title,
+                          comment.title,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -64,30 +55,12 @@ class PostCard extends StatelessWidget {
                                   fontSize: 12, fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          post.body,
+                          comment.body,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
                               .copyWith(fontSize: 10),
                         ),
-                        if (isPost!)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                onPressed: () => onTap!(),
-                                child: const Row(
-                                  children: [
-                                    Text('Comments'),
-                                    Icon(
-                                      FeatherIcons.arrowRight,
-                                      size: 15,
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
                       ],
                     )
                   ],
