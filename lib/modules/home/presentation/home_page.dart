@@ -87,7 +87,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Column(
                     children: success.posts.map((post) {
-                      return PostCard(post: post);
+                      return PostCard(
+                          post: post,
+                          onTap: () => Modular.to
+                              .pushNamed('/comments', arguments: post));
                     }).toList(),
                   ),
                 ],
