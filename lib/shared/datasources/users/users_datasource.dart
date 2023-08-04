@@ -17,7 +17,7 @@ class UsersDatasourceImp implements UsersDatasource {
   Future<void> _getUsers() async {
     try {
       final response = await _dio.get<List>(UsersConstants.users);
-      if (response.data != null) {
+      if (response.data != null && response.statusCode == 200) {
         cachedUsers =
             response.data!.map((user) => UserModel.fromMap(user)).toList();
       } else {
@@ -30,7 +30,6 @@ class UsersDatasourceImp implements UsersDatasource {
 
   @override
   Future<UserModel> call(int userId) async {
-
     try {
       if (cachedUsers.isEmpty) {
         await _getUsers();
