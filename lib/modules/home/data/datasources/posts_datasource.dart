@@ -16,7 +16,11 @@ class PostsDatasourceImp implements PostsDatasource {
   Future<List<PostModel>> call() async {
     try {
       final response = await _dio.get<List>(HomeConstants.posts);
-      return response.data!.map((post) => PostModel.fromMap(post)).toList();
+      if (response.data != null && response.statusCode == 200) {
+        return response.data!.map((post) => PostModel.fromMap(post)).toList();
+      } else {
+        throw PostsServerError();
+      }
     } catch (e) {
       throw PostsServerError();
     }

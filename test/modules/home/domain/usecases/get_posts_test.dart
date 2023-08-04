@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:posts_challenge/modules/home/domain/entities/post.dart';
+import 'package:posts_challenge/modules/home/data/errors/posts_errors.dart';
 import 'package:posts_challenge/modules/home/domain/usecases/get_posts.dart';
 import 'package:posts_challenge/modules/home/domain/repositories/post_repository.dart';
 
@@ -18,5 +19,13 @@ main() {
 
     final result = await usecase();
     expect(result.fold(id, id), isInstanceOf<List<Post>>());
+  });
+
+    test('Should return PostsServerError', () async {
+    when(repository())
+        .thenAnswer((realInvocation) async =>  Left(PostsServerError()));
+
+    final result = await usecase();
+    expect(result.fold(id, id), isInstanceOf<PostsServerError>());
   });
 }

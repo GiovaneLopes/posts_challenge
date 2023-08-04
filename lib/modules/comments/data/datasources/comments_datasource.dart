@@ -16,7 +16,7 @@ class CommentsDatasourceImp implements CommentsDatasource {
   Future<List<CommentModel>> call(int postId) async {
     try {
       final response = await _dio.get<List>(CommentConstants.comments(postId));
-      if (response.data != null) {
+      if (response.data != null && response.statusCode == 200) {
         return response.data!
             .map((comment) => CommentModel.fromMap(comment))
             .toList();

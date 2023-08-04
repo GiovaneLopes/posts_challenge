@@ -68,9 +68,6 @@ class _CommentsPageState extends State<CommentsPage> {
                 post: widget.post,
                 isPost: false,
               ),
-              const SizedBox(
-                height: 32,
-              ),
               Text(
                 'Comments',
                 style: Theme.of(context)
@@ -79,7 +76,7 @@ class _CommentsPageState extends State<CommentsPage> {
                     .copyWith(fontWeight: FontWeight.w500),
               ),
               const SizedBox(
-                height: 32,
+                height: 20,
               ),
               BlocConsumer(
                 listener: (context, state) {
